@@ -26,7 +26,10 @@ public class Account {
 	private String password;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	private ArrayList<BudgetTable> budgetTables;
+	private ArrayList<BudgetTable> ownedTables;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private ArrayList<BudgetTable> sharedTables;
 
 	public long getId() {
 		return id;
@@ -56,12 +59,20 @@ public class Account {
 		this.password = password;
 	}
 
-	public ArrayList<BudgetTable> getBudgetTables() {
-		return budgetTables;
+	public ArrayList<BudgetTable> getOwnedTables() {
+		return ownedTables;
 	}
 
-	public void setBudgetTables(ArrayList<BudgetTable> budgetTables) {
-		this.budgetTables = budgetTables;
+	public void setOwnedTables(ArrayList<BudgetTable> ownedTables) {
+		this.ownedTables = ownedTables;
+	}
+
+	public ArrayList<BudgetTable> getSharedTables() {
+		return sharedTables;
+	}
+
+	public void setSharedTables(ArrayList<BudgetTable> sharedTables) {
+		this.sharedTables = sharedTables;
 	}
 
 	public boolean isValid() {

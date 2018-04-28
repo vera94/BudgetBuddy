@@ -1,16 +1,22 @@
 package services;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 import dao.AccountDao;
+import dto.TableDTO;
 import model.Account;
 
 @Path("/accounts")
-public class AccountService {
+@Consumes("application/json")
+@Produces("application/json")
+public class AccountResource {
 	
 	@Inject
     private AccountDao accountDao;
@@ -43,6 +49,12 @@ public class AccountService {
 	@PUT 
 	public void updateAccount(Account account) {
 		accountDao.udpateAccount(account);
+	}
+	
+	@GET
+	@Path("/{id}/tables")
+	public TableDTO getTablesPerUser(@PathParam("id") long userId){
+		return accountDao.getTablesPerUser(userId);
 	}
 	
 }

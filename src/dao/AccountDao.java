@@ -2,8 +2,10 @@ package dao;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 
+import dto.TableDTO;
 import model.Account;
 @Stateless
 public class AccountDao {
@@ -31,6 +33,17 @@ public class AccountDao {
 			em.merge(account);
 		}
 		
+	}
+
+	public TableDTO getTablesPerUser(long userId) {
+		Account account = em.find(Account.class, userId);
+		if(account == null) {
+			new EntityNotFoundException("The user with id: " +  userId + " does not exist");
+		}
+		TableDTO tableDto = new TableDTO();
+		tableDto.setOwnedTables(account.getOwnedTables());
+		tableDto.setSharedTables(account.getSharedTables());
+		return tableDto;
 	}
 
 	
