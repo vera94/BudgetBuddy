@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,12 +13,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-@NamedQueries({
-})
+
+@Entity
 public class BudgetTable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	
 	String name;
@@ -27,7 +28,7 @@ public class BudgetTable {
 	@Enumerated(EnumType.STRING)
 	TableType type;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy="ownedTables")
 	List<Account> owners;
 	
 	@ManyToMany(cascade = CascadeType.ALL)

@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -7,6 +9,7 @@ import javax.persistence.PersistenceContext;
 
 import dto.TableDTO;
 import model.Account;
+import model.BudgetTable;
 @Stateless
 public class AccountDao {
 	
@@ -17,6 +20,12 @@ public class AccountDao {
 		Account a = new Account();
 		a.setName("name");
 		a.setPassword("qwerty");
+		ArrayList<BudgetTable> ownedTables = new ArrayList<>();
+		BudgetTable budgetTable = new BudgetTable();
+		budgetTable.setName("table");
+		budgetTable.setDescription("desc");
+		ownedTables.add(budgetTable);
+		a.setOwnedTables(ownedTables);
 		em.persist(a);
 		
 	}
@@ -41,8 +50,8 @@ public class AccountDao {
 			new EntityNotFoundException("The user with id: " +  userId + " does not exist");
 		}
 		TableDTO tableDto = new TableDTO();
-		tableDto.setOwnedTables(account.getOwnedTables());
-		tableDto.setSharedTables(account.getSharedTables());
+//		tableDto.setOwnedTables(account.getOwnedTables());
+//		tableDto.setSharedTables(account.getSharedTables());
 		return tableDto;
 	}
 

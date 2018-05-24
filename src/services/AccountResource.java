@@ -15,7 +15,6 @@ import model.Account;
 
 @Path("/accounts")
 @Consumes("application/json")
-@Produces("application/json")
 public class AccountResource {
 	
 	@Inject

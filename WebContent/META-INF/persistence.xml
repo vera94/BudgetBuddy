@@ -7,12 +7,13 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>budgetBuddy</jta-data-source>
 		<class>model.Account</class>
+		<class>model.BudgetTable</class>
 		<properties>
 			<!-- property name="eclipselink.session.customizer"	value="org.eclipse.persistence.example.unified.integration.JPAEclipseLinkSessionCustomizer" /-->
 			<property name="eclipselink.logging.level" value="FINEST" />
 			<!-- uncomment the following once - if you wish to have your database 
 				tables created by EclipseLink -->
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
 			<property name="eclipselink.ddl-generation.output-mode"
 				value="database" />
 		</properties>

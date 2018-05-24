@@ -16,7 +16,7 @@ import static utils.ValidationUtil.*;
 public class Account {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
@@ -28,7 +28,7 @@ public class Account {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private ArrayList<BudgetTable> ownedTables;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy="shares")
 	private ArrayList<BudgetTable> sharedTables;
 
 	public long getId() {
