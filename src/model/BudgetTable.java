@@ -9,9 +9,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -19,20 +21,23 @@ public class BudgetTable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	private long id;
 	
-	String name;
+	private String name;
 	
-	String description;
+	private String description;
 	
 	@Enumerated(EnumType.STRING)
-	TableType type;
+	private TableType type;
 	
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy="ownedTables")
-	List<Account> owners;
+	private List<Account> owners;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
-	List<Account> shares;
+	private List<Account> shares;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<BudgetItem> items;
 
 	public long getId() {
 		return id;
@@ -76,6 +81,14 @@ public class BudgetTable {
 
 	public void setShares(List<Account> shares) {
 		this.shares = shares;
+	}
+
+	public List<BudgetItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<BudgetItem> items) {
+		this.items = items;
 	}
 
 

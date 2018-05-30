@@ -8,6 +8,7 @@
 		<jta-data-source>budgetBuddy</jta-data-source>
 		<class>model.Account</class>
 		<class>model.BudgetTable</class>
+		<class>model.BudgetItem</class>
 		<properties>
 			<!-- property name="eclipselink.session.customizer"	value="org.eclipse.persistence.example.unified.integration.JPAEclipseLinkSessionCustomizer" /-->
 			<property name="eclipselink.logging.level" value="FINEST" />
