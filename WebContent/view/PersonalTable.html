@@ -8,8 +8,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/BaseController.js"></script>
-<script type="text/javascript" src="../js/Table.js"></script>
+<script type="text/javascript" src="../controller/BaseController.js"></script>
+<script type="text/javascript" src="../controller/Table.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" href="../css/signup.css">
 <link rel="stylesheet" type="text/css" href="../css/table.css">
@@ -39,12 +39,18 @@
 						class="close" title="Close Modal">&times;</span>
 					<form class="modal-content animate" id='addItem' action="index.html" method="post">
 						<div class="container">
-							<label><b>Topic</b></label> 
-							<input type="text" id="topic"
-								placeholder="Enter Topic" name='topic' required> 
-							<label><b>Description</b></label>
-							<input type="text" id="description" placeholder="Enter Description" name='description'
-								required>							
+							<label><b>Info</b></label> 
+							<input type="text" id="item_info"
+								placeholder="Enter Info" name='item_info' required> 
+							<label><b>Value</b></label>
+							<input type="text" id="item_value" placeholder="Enter Value" name='item_value'
+								required>
+							<label><b>Category</b></label>
+						 	<input id="item_type_selection" list="item_type" name='item_type'>								
+								<datalist id="item_type">
+								  <option value="INCOME">
+								  <option value="OUTCOME">
+								</datalist> 								
 							<div class="clearfix">
 								<button type="button"
 									onclick="document.getElementById('id03').style.display='none'"

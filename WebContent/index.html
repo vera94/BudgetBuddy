@@ -14,7 +14,7 @@
       $("#includedContent").load("view/login.html"); 
     });
     </script> 
-<script type="text/javascript" src="js/BaseController.js"></script>
+<script type="text/javascript" src="controller/BaseController.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/signup.css">
 
@@ -30,23 +30,29 @@
 			<button
 				onclick="document.getElementById('id02').style.display='block'">Log
 				in</button>
+				
+				
+				
 			<div id="id01" class="modal">
 				<span onclick="document.getElementById('id01').style.display='none'"
 					class="close" title="Close Modal">&times;</span>
 					
-				<form class="modal-content animate" action="action_page.php">
+				<form id="addAccount" class="modal-content animate" action="view/PersonalTable.html">
 					<div class="container">
-						<label><b>Email</b></label> <input type="text"
-							placeholder="Enter Email" name="email" required> <label><b>Password</b></label>
-						<input type="password" placeholder="Enter Password" name="psw"
-							required> <label><b>Repeat Password</b></label> <input
+							<label><b>Email</b></label> 
+							<input id="email" type="text" placeholder="Enter Email" name="email" required> 
+							<label><b>Password</b></label>
+							<input id="pwd" type="password" placeholder="Enter Password" name="psw"
+								required> 
+							<label><b>Repeat Password</b></label> 
+							<input id="pwd2"
 							type="password" placeholder="Repeat Password" name="psw-repeat"
 							required> 
 						<div class="clearfix">
 							<button type="button"
 								onclick="document.getElementById('id01').style.display='none'"
 								class="cancelbtn">Cancel</button>
-							<button type="submit" class="signupbtn">Sign Up</button>
+							<button type="button" onclick="addAccount()">Sign Up</button>
 						</div>
 					</div>
 				</form>

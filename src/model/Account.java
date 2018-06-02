@@ -8,11 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import static utils.ValidationUtil.*;
 
 
 @Entity
+@NamedQueries({ @NamedQuery(name = "findAccountByMail", query = "SELECT a FROM Account a WHERE a.email = :email")})
 public class Account {
 	
 	@Id

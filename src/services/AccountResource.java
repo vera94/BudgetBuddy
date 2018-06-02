@@ -12,6 +12,9 @@ import javax.ws.rs.Produces;
 import dao.AccountDao;
 import dto.TableDTO;
 import model.Account;
+import model.BudgetItem;
+import model.BudgetTable;
+import model.TableType;
 
 @Path("/accounts")
 @Consumes("application/json")
@@ -22,27 +25,19 @@ public class AccountResource {
 	
 	@GET
 	public String hello() {
-//		Context ctx;
-//		try {
-//			System.out.println("Trying to connect");
-//			ctx = new InitialContext();
-//			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/budgetbuddy");
-//			Connection con = ds.getConnection();
-//			System.out.println(con.getMetaData().getDatabaseProductName());
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println("Unable to make connection with DB");
-//			
-//		}
-		accountDao.test();
+		Account accountByMail = accountDao.getAccountByMail("admin");
 		return "hello";
 	}
 	
+	@GET
+	@Path("/{email}")
+	public Account getAccountByMail(@PathParam("email") String email) {
+		return accountDao.getAccountByMail(email);
+	} 
+	
 	@POST
 	public void createAccount(Account account) {
-		accountDao.createAccount(account);
-		
+		accountDao.createAccount(account);		
 	}	
 	
 	@PUT 
@@ -51,9 +46,25 @@ public class AccountResource {
 	}
 	
 	@GET
-	@Path("/{id}/tables")
-	public TableDTO getTablesPerUser(@PathParam("id") long userId){
-		return accountDao.getTablesPerUser(userId);
+	@Path("/{email}/tables")
+	public TableDTO getTablesPerUser(@PathParam("email") String email){
+		return accountDao.getTablesPerUser(email);
 	}
 	
-}
+	@GET
+	@Path("/{email}/tables/{type}")
+	public TableDTO getTablesPerUserAndType(@PathParam("email") String email, @PathParam("type") TableType type){
+		return accountDao.getTablesPerUserAndType(email, type);
+	}	
+
+	
+	@GET
+	@Path("/{email}/tables/personal")
+	public BudgetTable getUserPersonalTable(@PathParam("email") String email){
+		TableDTO tableDTO = accountDao.getTablesPerUserAndType(email, TableType.PERSONAL);
+		return tableDTO.getPersonalTables().get(0);
+	}
+
+
+} 
+

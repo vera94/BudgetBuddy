@@ -91,5 +91,10 @@ public class BudgetTable {
 		this.items = items;
 	}
 
+	public BudgetTable addItem(BudgetItem item) {
+		items.add(item);		
+		return this;
+	}
+
 
 }

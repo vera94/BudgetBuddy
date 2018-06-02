@@ -28,7 +28,7 @@ body {
 	border-radius: 25px;
 }
 
-input, select {
+input, select, datalist {
 	max-width: 500px;
 }
 
