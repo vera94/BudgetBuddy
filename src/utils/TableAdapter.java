@@ -1,4 +1,4 @@
-/*package utils;
+package utils;
 
 import org.apache.johnzon.mapper.Converter;
 
@@ -19,4 +19,3 @@ public class TableAdapter implements Converter<BudgetTable>{
 	}
 
 }
-*/

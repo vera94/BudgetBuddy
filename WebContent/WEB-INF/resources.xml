@@ -1,9 +1,11 @@
-<?xml version="1.0"?>
-<!--  resources>
-    <Service id="jsonProvider" class-name="org.apache.cxf.jaxrs.provider.json.JSONProvider">
-        dropRootElement=true
-        supportUnwrapped = true
-        dropCollectionWrapperElement=true
+<?xml version="1.0"?> 
+<resources>
+    <Service id="johnzon" class-name="org.apache.johnzon.jaxrs.ConfigurableJohnzonProvider">
+        accessModeName = both 
+        supportHiddenAccess = true 
+        doCloseOnStreams = false 
+        version = 2 
+        skipNull = false 
+        skipEmptyArray = false 
     </Service>
-  
-</resources>  -->
+</resources>

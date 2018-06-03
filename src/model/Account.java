@@ -21,6 +21,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.johnzon.mapper.JohnzonConverter;
+
+import utils.TableAdapter;
+
 
 @Entity
 @XmlRootElement
@@ -51,7 +55,7 @@ public class Account implements Serializable{
             inverseJoinColumns = @JoinColumn( name="sharedTables_id")
         )
 	private ArrayList<BudgetTable> sharedTables;
-
+ 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(
             name="OwnedTables",
@@ -95,7 +99,7 @@ public class Account implements Serializable{
 		this.password = password;
 	}
 	
-	//@JohnzonConverter( TableAdapter.class) 
+	@JohnzonConverter( TableAdapter.class) 
 	public ArrayList<BudgetTable> getOwnedTables() {
 		return ownedTables;
 	}
@@ -103,8 +107,8 @@ public class Account implements Serializable{
 	public void setOwnedTables(ArrayList<BudgetTable> ownedTables) {
 		this.ownedTables = ownedTables;
 	}
-
-	//@JohnzonConverter( TableAdapter.class) 
+	
+	@JohnzonConverter( TableAdapter.class) 
 	public ArrayList<BudgetTable> getSharedTables() {
 		return sharedTables;
 	}

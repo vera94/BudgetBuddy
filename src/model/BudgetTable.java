@@ -53,7 +53,7 @@ public class BudgetTable implements Serializable{
 
 	@Override
 	public String toString() {
-		return "BudgetTable [id=" + id + ", name=" + name + ", description=" + description + ", type=" + type
+		return "[id=" + id + ", name=" + name + ", description=" + description + ", type=" + type
 				+ ", items=" + items + "]";
 	}
 

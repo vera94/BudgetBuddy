@@ -28,10 +28,9 @@ public class AccountResource {
 	
 	@GET
 	@Produces("application/json")
-	public Account hello() {
-		
+	public Account hello() {		
 		Account accountByMail = accountDao.getAccountByMail("admin");
-		return accountByMail;		
+		return accountByMail;
 	}
 	
 	@GET

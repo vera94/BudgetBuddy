@@ -16,8 +16,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>JAX-RS Servlet</servlet-name>
-    <url-pattern>/jaxrs/*</url-pattern>
+    <url-pattern>/BudgetBuddy/*</url-pattern>
   </servlet-mapping>
+ 
   <resource-ref>
     <description>Db</description>
     <res-ref-name>jdbc/budgetbuddy</res-ref-name>
