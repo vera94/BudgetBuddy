@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -9,6 +10,7 @@ import model.BudgetItem;
 import model.BudgetTable;
 import model.TableType;
 
+@Stateless
 public class BudgetDao {
 
 	@PersistenceContext(unitName="budgetBuddyJTA")
@@ -20,6 +22,7 @@ public class BudgetDao {
 
 	public BudgetTable addItem(long tableId, BudgetItem item) {
 		BudgetTable budgetTable = em.find(BudgetTable.class, tableId);
+		em.persist(item);
 		budgetTable.addItem(item);
 		return em.merge(budgetTable);
 		

@@ -1,22 +1,38 @@
 package model;
 
+import static utils.ValidationUtil.VALID_EMAIL_ADDRESS_REGEX;
+import static utils.ValidationUtil.hasValidLength;
+import static utils.ValidationUtil.notNullOrEmpty;
+import static utils.ValidationUtil.validate;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
-import static utils.ValidationUtil.*;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
+@XmlRootElement
 @NamedQueries({ @NamedQuery(name = "findAccountByMail", query = "SELECT a FROM Account a WHERE a.email = :email")})
-public class Account {
+public class Account implements Serializable{
+	
+	private static final long serialVersionUID = -2340029740061156573L;
+
+	public Account() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +44,28 @@ public class Account {
 	
 	private String password;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(
+            name="SharedTables",
+            joinColumns = @JoinColumn( name="Account_ID"),
+            inverseJoinColumns = @JoinColumn( name="sharedTables_id")
+        )
+	private ArrayList<BudgetTable> sharedTables;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(
+            name="OwnedTables",
+            joinColumns = @JoinColumn( name="Account_ID"),
+            inverseJoinColumns = @JoinColumn( name="ownedTables_id")        )
 	private ArrayList<BudgetTable> ownedTables;
 	
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy="shares")
-	private ArrayList<BudgetTable> sharedTables;
+	
+	@Override
+	public String toString() {
+		return "Account [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
+				+ ", sharedTables=" + sharedTables + ", ownedTables=" + ownedTables + "]";
+	}
+
 
 	public long getId() {
 		return id;
@@ -61,7 +94,8 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	//@JohnzonConverter( TableAdapter.class) 
 	public ArrayList<BudgetTable> getOwnedTables() {
 		return ownedTables;
 	}
@@ -70,6 +104,7 @@ public class Account {
 		this.ownedTables = ownedTables;
 	}
 
+	//@JohnzonConverter( TableAdapter.class) 
 	public ArrayList<BudgetTable> getSharedTables() {
 		return sharedTables;
 	}

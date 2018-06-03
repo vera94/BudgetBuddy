@@ -11,7 +11,7 @@
 		<class>model.BudgetItem</class>
 		<properties>
 			<!-- property name="eclipselink.session.customizer"	value="org.eclipse.persistence.example.unified.integration.JPAEclipseLinkSessionCustomizer" /-->
-			<!-- property name="eclipselink.logging.level" value="FINEST" /-->
+			<property name="eclipselink.logging.level" value="FINEST" />
 			<!-- uncomment the following once - if you wish to have your database 
 				tables created by EclipseLink -->
 			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />

@@ -1,23 +1,35 @@
 package model;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
-public class BudgetTable {
+@XmlRootElement
+public class BudgetTable implements Serializable{
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6249601752705357364L;
+	
+	public BudgetTable() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,19 +42,29 @@ public class BudgetTable {
 	@Enumerated(EnumType.STRING)
 	private TableType type;
 	
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy="ownedTables")
-	private List<Account> owners;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Account> shares;
+//	@ManyToMany(cascade = CascadeType.ALL, mappedBy="ownedTables")
+//	private ArrayList<Account> owners;
+//	
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	private ArrayList<Account> shares;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<BudgetItem> items;
+	private ArrayList<BudgetItem> items;
+
+	@Override
+	public String toString() {
+		return "BudgetTable [id=" + id + ", name=" + name + ", description=" + description + ", type=" + type
+				+ ", items=" + items + "]";
+	}
 
 	public long getId() {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -67,27 +89,27 @@ public class BudgetTable {
 		this.type = type;
 	}
 
-	public List<Account> getOwners() {
-		return owners;
-	}
+//	public ArrayList<Account> getOwners() {
+//		return owners;
+//	}
+//
+//	public void setOwners(ArrayList<Account> owners) {
+//		this.owners = owners;
+//	}
+//
+//	public ArrayList<Account> getShares() {
+//		return shares;
+//	}
+//
+//	public void setShares(ArrayList<Account> shares) {
+//		this.shares = shares;
+//	}
 
-	public void setOwners(List<Account> owners) {
-		this.owners = owners;
-	}
-
-	public List<Account> getShares() {
-		return shares;
-	}
-
-	public void setShares(List<Account> shares) {
-		this.shares = shares;
-	}
-
-	public List<BudgetItem> getItems() {
+	public ArrayList<BudgetItem> getItems() {
 		return items;
 	}
 
-	public void setItems(List<BudgetItem> items) {
+	public void setItems(ArrayList<BudgetItem> items) {
 		this.items = items;
 	}
 

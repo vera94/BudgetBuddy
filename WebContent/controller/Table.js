@@ -27,13 +27,13 @@ function addItem() {
 }
 
 $(document).ready(function() {
-
 	var table = $("#ProjectsTable");
 	$.ajax({
-		url : "accounts/2/tables/personal",
+		url : "http://localhost:8080/BudgetBuddy/tables/personal",
 		type : "GET",
 		dataType : "json",
 		success : function(data) {
+			this.model = data;
 			renderTable(data.project, table);
 		}
 	});
