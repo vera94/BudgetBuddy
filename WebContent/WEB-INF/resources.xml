@@ -1,5 +1,5 @@
 <?xml version="1.0"?> 
-<resources>
+<!-- resources>
     <Service id="johnzon" class-name="org.apache.johnzon.jaxrs.ConfigurableJohnzonProvider">
         accessModeName = both 
         supportHiddenAccess = true 
@@ -8,4 +8,4 @@
         skipNull = false 
         skipEmptyArray = false 
     </Service>
-</resources>
+</resources -->
