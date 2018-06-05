@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -41,9 +43,18 @@ public class BudgetDao {
 		return null;
 	}
 
-	public void deleteItem(long itemId) {
-		BudgetItem budgetItem = em.find(BudgetItem.class, itemId);
-		em.remove(budgetItem);
+	public void deleteItem(long tableId, long itemId) {
+		BudgetTable budgetTable = em.find(BudgetTable.class, tableId);
+		ArrayList<BudgetItem> items = budgetTable.getItems();
+		for (Iterator<BudgetItem> iterator = items.iterator(); iterator.hasNext();) {
+			BudgetItem item = (BudgetItem) iterator.next();
+			if(item.getId() == itemId) {
+				items.remove(item);
+				break;
+			}
+			
+		}
+		em.persist(budgetTable);
 	}
 	
 	

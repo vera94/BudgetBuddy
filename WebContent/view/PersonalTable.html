@@ -25,7 +25,7 @@
 			<div class="col-md-3" id="menu">
 				<ul class="nav nav-pills nav-stacked">
 					<li><a href="/BudgetBuddy">Home</a></li>
-					<li class="active"><a href="view/PersonalTable.html">My personal tables</a></li>
+					<li class="active"><a href="PersonalTable.html">My personal tables</a></li>
 					<li><a href="FamilyTable.html">Family tables</a></li>
 				</ul>
 			</div>
@@ -55,20 +55,20 @@
 								<button type="button"
 									onclick="document.getElementById('id03').style.display='none'"
 									class="cancelbtn">Cancel</button>
-								<button type="button" onclick="addItem()">Create</button>
+								<button type="button" onclick='addItem(this)'>Create</button>
 							</div>
 						</div>
 					</form>
 				</div>
 				<div class="table-responsive">
-					<input type="text" id="filterValue" onkeyup="filter()" placeholder="Search for topics..">
+					<input type="text" id="filterValue" onkeyup="filter()" placeholder="Search for items..">
 					<table class="table" id="PersonalBudgetTable">
 						<thead>
 							<tr>
 								<th>ID</th>
 								<th>Name</th>
-								<th>Description</th>
-								<th>Status</th>
+								<th>Value</th>
+								<th>Type</th>
 								<th>Details</th>
 							</tr>
 						</thead>
