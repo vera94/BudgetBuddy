@@ -1,6 +1,4 @@
 function addAccount() {
-	var search= window.location.search; 
-	//var projectId = search.substring(1);
     var formUrl = $("#addAccount").attr("action");
     var email = $("#email")[0].value;
     var pwd = $("#pwd")[0].value;
