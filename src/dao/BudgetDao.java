@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,10 +8,13 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import model.BudgetItem;
 import model.BudgetTable;
 import model.TableType;
+import utils.CSVGenerator;
 
 @Stateless
 public class BudgetDao {
@@ -55,6 +59,14 @@ public class BudgetDao {
 			
 		}
 		em.persist(budgetTable);
+	}
+
+	public Response getReportPerTable(long tableId) {
+		BudgetTable budgetTable = em.find(BudgetTable.class, tableId);
+		File file = CSVGenerator.writeToCSV(budgetTable.getItems());
+		ResponseBuilder response = Response.ok((Object) file);
+		response.header("Content-Disposition", "attachment; filename=\" " + "items" + ".csv\"");	
+		return response.build();
 	}
 	
 	

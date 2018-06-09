@@ -1,13 +1,16 @@
 package model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -26,22 +29,26 @@ public class BudgetItem implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
 	private String name;
 	
-	@Enumerated(EnumType.STRING)
+	private String comment;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	private BudgetCategory category;
 	
 	private long value;
 	
 	@Enumerated(EnumType.STRING)
 	private ItemType type;
+	
+	private Timestamp date;
 
 	@Override
 	public String toString() {
-		return "BudgetItem [id=" + id + ", name=" + name + ", category=" + category + ", value=" + value + ", type="
-				+ type + "]";
+		return "BudgetItem [id=" + id + ", name=" + name + ", comment=" + comment + ", category=" + category + ", value=" + value + ", type="
+				+ type + ", date=" + date + "]";
 	}
 
 	public long getId() {
@@ -58,6 +65,14 @@ public class BudgetItem implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public BudgetCategory getCategory() {
@@ -82,6 +97,14 @@ public class BudgetItem implements Serializable{
 
 	public void setType(ItemType type) {
 		this.type = type;
+	}
+
+	public Timestamp getDate() {
+		return date;
+	}
+
+	public void setDate(Timestamp date) {
+		this.date = date;
 	}	
 	
 }

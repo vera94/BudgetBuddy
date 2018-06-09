@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -36,6 +37,16 @@ public class BudgetTable implements Serializable{
 	private String name;
 	
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
+	private Month month;
+	
+	private long income;
+	
+	private long outcome;
+	
+	@Transient
+	private long total;
 	
 	@Enumerated(EnumType.STRING)
 	private TableType type;
@@ -71,6 +82,38 @@ public class BudgetTable implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Month getMonth() {
+		return month;
+	}
+
+	public void setMonth(Month month) {
+		this.month = month;
+	}
+
+	public long getIncome() {
+		return income;
+	}
+
+	public void setIncome(long income) {
+		this.income = income;
+	}
+
+	public long getOutcome() {
+		return outcome;
+	}
+
+	public void setOutcome(long outcome) {
+		this.outcome = outcome;
+	}
+
+	public long getTotal() {
+		return total;
+	}
+
+	public void setTotal(long total) {
+		this.total = total;
 	}
 
 	public TableType getType() {

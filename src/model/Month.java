@@ -1,0 +1,5 @@
+package model;
+
+public enum Month {
+	JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER 
+}

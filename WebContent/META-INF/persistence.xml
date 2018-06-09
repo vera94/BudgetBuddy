@@ -9,6 +9,7 @@
 		<class>model.Account</class>
 		<class>model.BudgetTable</class>
 		<class>model.BudgetItem</class>
+		<class>model.BudgetCategory</class>
 		<properties>
 			<!-- property name="eclipselink.session.customizer"	value="org.eclipse.persistence.example.unified.integration.JPAEclipseLinkSessionCustomizer" /-->
 			<!-- <property name="eclipselink.logging.level" value="FINEST" /> -->
