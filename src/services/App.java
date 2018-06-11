@@ -17,6 +17,7 @@ public class App extends Application {
 		singletons.add(new BudgetResource());
 		singletons.add(new TableResource());
 		singletons.add(new AccountResource());
+		singletons.add(new CategoryService());
 		return singletons;
 	}
 

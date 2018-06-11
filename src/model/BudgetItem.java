@@ -17,6 +17,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class BudgetItem implements Serializable{
 
+	public BudgetItem(BudgetItem other) {
+		this.name = other.getName();
+		this.comment = other.getComment();
+		this.category = other.getCategory();
+		this.value = other.getValue();
+		this.type = other.getType();
+	}
+
 	/**
 	 * 
 	 */
@@ -35,7 +43,7 @@ public class BudgetItem implements Serializable{
 	
 	private String comment;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private BudgetCategory category;
 	
 	private long value;
@@ -105,6 +113,15 @@ public class BudgetItem implements Serializable{
 
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+
+	public void mergeProperties(BudgetItem item) {
+		this.setCategory(item.getCategory());
+		this.setComment(item.getComment());
+		this.setDate(item.getDate());
+		this.setName(item.getName());
+		this.setType(type);
+		
 	}	
 	
 }

@@ -28,7 +28,7 @@ public class AccountResource {
     private AccountDao accountDao;
 	
 	@GET
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Account hello() {		
 		Account accountByMail = accountDao.getAccountByMail("admin");
 		return accountByMail;
@@ -36,6 +36,7 @@ public class AccountResource {
 	
 	@GET
 	@Path("/{email}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Account getAccountByMail(@PathParam("email") String email) {
 		return accountDao.getAccountByMail(email);
 	} 

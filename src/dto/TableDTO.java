@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.Account;
 import model.BudgetTable;
+import model.Month;
 import model.TableType;
 
 public class TableDTO {
@@ -62,5 +63,10 @@ public class TableDTO {
 			}
 		}
 		return result;
+	}
+
+	public void getTablesPerTypeMonth(Account account, TableType type, Month month) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -38,6 +38,16 @@ public class BudgetTable implements Serializable{
 	
 	private String description;
 	
+	public BudgetTable(BudgetTable other) {
+		this.name = other.getName();
+		this.description = other.getDescription();
+		this.month = other.getMonth();
+		this.income = other.getIncome();
+		this.outcome = other.getOutcome();
+		this.total = other.getTotal();
+		this.type = other.getType();
+	}
+
 	@Enumerated(EnumType.STRING)
 	private Month month;
 	
@@ -135,6 +145,15 @@ public class BudgetTable implements Serializable{
 	public BudgetTable addItem(BudgetItem item) {
 		items.add(item);		
 		return this;
+	}
+
+	public void updateProperties(BudgetTable table) {
+		this.setDescription(table.getDescription());
+		this.setIncome(table.getIncome());
+		this.setOutcome(table.getOutcome());
+		this.setMonth(table.getMonth());
+		this.setName(table.getName());
+		
 	}
 
 

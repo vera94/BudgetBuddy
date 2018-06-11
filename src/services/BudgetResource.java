@@ -37,11 +37,13 @@ public class BudgetResource {
 	
 	@POST
 	@Path("/{tableId}/add")
+	@Produces(MediaType.APPLICATION_JSON)
 	public BudgetTable addItem(@PathParam("tableId") long tableId, BudgetItem item){
 		return budgetDao.addItem(tableId, item);
 	}
 	
 	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
 	public BudgetItem updateItem(BudgetItem item){
 		return budgetDao.updateItem(item);
 	}
